@@ -11,7 +11,7 @@ var cron = require('node-cron');
 
 //adjust cron timing
 cron.schedule('*/10 * * * * *', () => {
-  console.log('running a task every minute');
+  console.log('running a task in every 10 sec');
   ping();
 });	
 
