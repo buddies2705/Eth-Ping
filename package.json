@@ -1,0 +1,20 @@
+{
+  "name": "QuiknodePing",
+  "version": "1.0.0",
+  "description": "Testing if your QuikNode is alive on not?",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/buddies2705/Eth-Ping.git"
+  },
+  "author": "Gaurav Agrawal",
+  "license": "ISC",
+  "dependencies": {
+    "node-cron": "^2.0.3",
+    "nodemailer": "^5.1.1",
+    "web3": "^1.0.0-beta.41"
+  }
+}
