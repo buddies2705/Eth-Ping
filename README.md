@@ -14,7 +14,7 @@ A Basic script which pings (getBlockNumber) your node in every 10 seconds to che
 
 * Change from and to 
 
-* Allow less secure app if you want to use Gmail mail service, Follow [this doc](https://support.google.com/accounts/answer/6010255hl=en) and Change account access for less secure apps
+* Allow less secure app if you want to use Gmail mail service, Follow [this doc](https://support.google.com/accounts/answer/6010255) and Change account access for less secure apps
 
 **How to run**
 
