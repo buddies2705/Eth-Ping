@@ -1,9 +1,6 @@
 # Eth-Ping
 Checking if your Ethereum node is alive or not?  
 
-# A Basic script which pings (getBlockNumber) your node in every 10 seconds to check if your node is…
-
-
 
 A Basic script which pings (getBlockNumber) your node in every 10 seconds to check if your node is alive is or not. 
 
