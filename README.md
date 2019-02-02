@@ -24,4 +24,4 @@ A Basic script which pings (getBlockNumber) your node in every 10 seconds to che
 
     npm install
 
-    node index.js 
+    npm start 
