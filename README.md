@@ -3,13 +3,6 @@ Checking if your Ethereum node is alive or not?
 
 A simple NodeJs Script which checks your Ethereum Node is alive
 
-At QuikNode, We always think of our customers and their problems. We recently started noticing that some of our customers are facing a problem with monitoring their Ethereum Node status. 
-
-![](https://cdn-images-1.medium.com/max/2000/1*hBKtzaEqia8EEJb9RS8VQA.png)
-
-We quickly decided to write a script which will help our customers or anyone who wants to monitor their Ethereum node connection status.
-[**buddies2705/Eth-Ping**
-*Checking if your Ethereum node is alive or not . Contribute to buddies2705/Eth-Ping development by creating an account…*github.com](https://github.com/buddies2705/Eth-Ping)
 
 **What does our Script do?**
 
