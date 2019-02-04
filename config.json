@@ -1,0 +1,10 @@
+{ 
+ "numberOfRetries" : 3,
+ "rpcURL" : "your_node_url",
+ "email"  : "your_email",
+ "password" : "your_email_password",
+ "recipient" : " recipient1@example.com, recipient2@example.com",
+ "emailSuject":"Fire In the Hole ✔ , Your node is not responding",
+ "emailText": "You node is not responding",
+ "emailHtml": "<h2>You node is not responding </h2>"
+}

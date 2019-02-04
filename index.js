@@ -1,72 +1,57 @@
-const Web3 = require('web3')
-const rpcURL = "Your_node_url"
-var web3 = new Web3(new Web3.providers.HttpProvider(rpcURL));
-var nodemailer = require('nodemailer');
-var count = 0 
-var isMailSend = false;
-var numberOfRetries = 3;
-
+const config = require('./config.json')
+const mailer = require('./sendMail')
+var retry = require('retry');
+var request = require('request');
 var cron = require('node-cron');
 
-
-//adjust cron timing
-cron.schedule('*/10 * * * * *', () => {
-  console.log('running a task in every 10 sec');
-  ping();
-});	
-
-// create reusable transporter object using SMTP transport
-var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'your_email',
-        pass: 'Your_email_password'
-    }
+process.on('uncaughtException', function (err) {
+    console.error(err);
+    console.log("Node NOT Exiting...");
 });
 
-//You need to allow less secure app if you want to use Gmail mail service.
-//Follow this doc (https://support.google.com/accounts/answer/6010255?hl=en)
-// and Change account access for less secure apps
+
+const rpcURL = config.rpcURL;
+var numberOfRetries = config.numberOfRetries;
+var count = 0 
+var isMailSend = false;
+
+var getBlock = {"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1};
+
+cron.schedule('*/15 * * * * *', () => {
+    console.log('Pinging in every 15 sec');
+    pingRequest(rpcURL,function(err, result) {
+        if (err || result == "" || result == undefined) { // TODO ask for failure condition or check for positve case
+            manageCount(true);
+        }else{
+            manageCount(false);
+        }
+    });
+  });	
 
 
-
-var mailOptions = {
-    from: 'gaurav@coinmonks.com', // sender address
-    to: 'gaurav@coinmonks.com', // list of receivers
-    subject: 'Fire In the Hole ✔ , Your node is not responding', // Subject line
-    text: 'You node is not responding', // plaintext body
-    html: 'your node is not responding' // html body
-};
-
-
-// send mail with defined transport object
-function send(){
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        console.log(error);
-    }else{
-        console.log('Message sent: ' + info.response);
-    }
+function pingRequest(rpcURL , cb){
+request.post({
+  headers: {'content-type' : 'application/json'},
+  url:     rpcURL,
+  body:    JSON.stringify(getBlock)
+}, function(error, response, body){
+    cb(error , body);
 });
 }
 
-
-
-function ping(){
-	web3.eth.getBlockNumber(function(err, result){
-		if(err){
-			count++;
-			if(count > numberOfRetries && isMailSend == false){
-				send();	
-				isMailSend = true;
-			}
-		}
-		else {
-			count = 0; 
-			if(isMailSend){
-				isMailSend = false;
-			} 
-			console.log(result);
-	  }
-	})
+function manageCount(isError){
+    if(isError){
+         count++;
+         if(count > numberOfRetries && isMailSend == false){
+             mailer.send();
+             isMailSend = true;
+         }
+     }
+     else {
+         count = 0; 
+         if(isMailSend){
+             isMailSend = false;
+         } 
+   }
 }
+
