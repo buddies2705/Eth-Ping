@@ -50,6 +50,16 @@ You need to install NodeJs and [clone the repository](https://github.com/buddies
 
 We recommend you to use [PM2](https://www.npmjs.com/package/pm2) to run above script, as it restarts the script if it gets crashed for XYZ reason. 
 
+
+### How to deploy this service using PM2 ###
+* Install PM2 on your system using NPM package manager : 
+    npm i pm2 -g
+
+* Assuming you have installed all project dependicies and changed the config values :
+    pm2 start pm2launch.config.js --env production
+
+To do : The service can dynamically pass the config values from the PM2 launch script.
+
 ### **Conclusion**
 
 We will be tweaking it over time and encourage you to use this script. Feedbacks, Comments, and Pull Requests are welcome. 
