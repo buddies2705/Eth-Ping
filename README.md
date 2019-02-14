@@ -42,13 +42,27 @@ You need to install NodeJs and [clone the repository](https://github.com/buddies
 
 * Check this for [installing NodeJs](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04)
 
+    ```
     git clone https://github.com/buddies2705/Eth-Ping
 
     npm install
 
     npm start
+    ```
 
 We recommend you to use [PM2](https://www.npmjs.com/package/pm2) to run above script, as it restarts the script if it gets crashed for XYZ reason. 
+
+
+### How to deploy this service using PM2 ###
+* Install PM2 on your system using NPM package manager : 
+
+    ```npm i pm2 -g```
+
+* Assuming you have installed all project dependicies and changed the config values :
+
+    ```pm2 start pm2launch.config.js --env production```
+
+To do : The service can dynamically pass the config values from the PM2 launch script.
 
 ### **Conclusion**
 
